@@ -1,0 +1,121 @@
+/* HEADER */
+#feed-wrapper{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+#feed-heading{
+    width: 90%;
+    margin:auto;
+    display: flex;
+    justify-content: space-between
+}
+
+#feed-title{
+    font-size: 2.3rem;
+    font-weight: 500;
+}
+
+#feed-create-btn{
+    width: 20px;
+}
+
+.post-wrapper{
+    width: 100%;
+    background: white;
+    box-shadow: 0px 2px 12px lightgrey;
+    border-radius: 20px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* testing */
+    padding-top: 5vw;
+    padding-bottom: 5vw;
+    margin-bottom: 5vw;
+}
+
+.post-header{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-user-data{
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-user-img{
+    object-fit: cover;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+}
+
+.post-user-info{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.post-user-name{
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.post-place-time-data{
+    display: flex;
+    justify-content: space-between;
+    font-size: .7rem;
+}
+
+.post-time{
+    color: grey;
+}
+
+.post-options{
+    width: 17px;
+}
+
+.post-location-img{
+    width: 12px;
+    margin-left: 5px;
+}
+
+/* CONTENT  */
+.post-cont{
+    margin-top: 5vw;
+    width: 90%;
+    font-size: .8rem;
+}
+
+/* MEDIA */
+.post-media{
+    margin-top: 3vw;
+    width:100%;
+object-fit: cover;
+}
+
+/* INTERACTION  */
+.post-interactions{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5vw;
+}
+.interactions-icon-btn{
+    width: 20px;
+}
+.interactions-left-links{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.iib-space{
+    margin-right: 7px;
+}
+.interactions-num{
+    font-size: .7rem;
+}

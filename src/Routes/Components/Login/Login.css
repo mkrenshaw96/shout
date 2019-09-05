@@ -1,0 +1,77 @@
+#login-wrapper{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    overflow: -moz-hidden-unscrollable;
+}
+
+#login-container{
+    margin:auto;
+    margin-top: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+}
+
+#login-title{
+    width: 100%;
+    font-size: 2.3rem;
+    font-weight: 500;
+}
+
+.login-input{
+    width: 100%;
+    font-size: 1rem;
+    /* background: lightgrey; */
+    border-radius: 8px;
+    border: 1px solid rgb(230,230,230);
+    padding: 15px;
+    margin: 10px 0px;
+    outline: none;
+}
+
+.input-btn{
+    width: 100%;
+    font-size: 1rem;
+    border-radius: 8px;
+    padding: 15px;
+    outline: none;
+    color: white;
+    margin: 10px 0px;
+    border: 0px;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ff2a05+0,ff7c00+41,ffa73d+82,ffa54c+100 */
+    background: #ff2a05; /* Old browsers */
+    background: -moz-linear-gradient(left,  #ff2a05 0%, #ff7c00 41%, #ffa73d 82%, #ffa54c 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  #ff2a05 0%,#ff7c00 41%,#ffa73d 82%,#ffa54c 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  #ff2a05 0%,#ff7c00 41%,#ffa73d 82%,#ffa54c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff2a05', endColorstr='#ffa54c',GradientType=1 ); /* IE6-9 */
+}       
+#login-alt-container{
+    margin:auto;
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+}
+#login-alt-title{
+    font-size: 1rem;
+    margin-bottom: 5vh;
+}
+
+#login-alt-icons-cont{
+    width: 50vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.login-alt-icons{
+    width: 35px;
+}
+
+.login-horizontal-rule{
+    width: 100%;
+    border: 0px;
+    border-top: 1px solid rgb(230,230,230);
+}
