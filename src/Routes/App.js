@@ -1,10 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import Home from './Components/Home/Home';
 import Register from './Components/Register/Register';
 import Login from './Components/Login/Login';
 import Feed from './Components/Feed/Feed';
 import Create from './Components/Create/Create';
+import Nav from './Components/Nav/Nav';
+import Discover from './Components/Discover/Discover';
+import Activity from './Components/Activity/Activity';
+import Profile from './Components/Profile/Profile';
 import decode from 'jwt-decode';
 
 const isAuthenticated = () => {
@@ -25,7 +28,10 @@ function PrivateRoute({ component: Component, ...rest }) {
 			{...rest}
 			render={props =>
 				isAuthenticated() ? (
-					<Component {...props} />
+					<>
+						<Component {...props} />
+						<Nav {...props} />
+					</>
 				) : (
 					<Redirect
 						to={{
@@ -42,11 +48,13 @@ function App() {
 	return (
 		<Router>
 			<Switch>
-				<Route path="/" exact component={Home} />
 				<Route path="/register" exact component={Register} />
 				<Route path="/login" exact component={Login} />
 				<PrivateRoute path="/feed" exact component={Feed} />
 				<PrivateRoute path="/create" exact component={Create} />
+				<PrivateRoute path="/discover" exact component={Discover} />
+				<PrivateRoute path="/activity" exact component={Activity} />
+				<PrivateRoute path="/profile" exact component={Profile} />
 			</Switch>
 		</Router>
 	);

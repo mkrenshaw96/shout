@@ -5,6 +5,7 @@ import './Login.css';
 import Instagram from './Assets/icons8-instagram-50.png';
 import Facebook from './Assets/icons8-facebook-50.png';
 import Twitter from './Assets/icons8-twitter-50.png';
+import { Redirect } from 'react-router-dom';
 
 const loginUser = gql`
 	mutation($username: String!, $password: String!) {
@@ -38,7 +39,7 @@ function Login(props) {
 			console.log(data);
 			localStorage.setItem('token', token);
 			localStorage.setItem('refreshToken', refreshToken);
-			// props.history.push('/feed');
+			return <Redirect to="/feed" />;
 		} else {
 			errors.map(x => console.log('MSG >>>', x.message, 'PATH >>>', x.path));
 			return <div>ERROR</div>;
