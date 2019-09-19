@@ -1,5 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import decode from 'jwt-decode';
+
+//COMPONENTS
 import Register from './Components/Register/Register';
 import Login from './Components/Login/Login';
 import Feed from './Components/Feed/Feed';
@@ -8,7 +11,8 @@ import Nav from './Components/Nav/Nav';
 import Discover from './Components/Discover/Discover';
 import Activity from './Components/Activity/Activity';
 import Profile from './Components/Profile/Profile';
-import decode from 'jwt-decode';
+import Header from './Components/Header/Header';
+import Search from './Components/Seach/Search';
 
 const isAuthenticated = () => {
 	const token = localStorage.getItem('token');
@@ -29,6 +33,7 @@ function PrivateRoute({ component: Component, ...rest }) {
 			render={props =>
 				isAuthenticated() ? (
 					<>
+						<Header {...props} />
 						<Component {...props} />
 						<Nav {...props} />
 					</>
@@ -50,11 +55,12 @@ function App() {
 			<Switch>
 				<Route path="/register" exact component={Register} />
 				<Route path="/login" exact component={Login} />
-				<PrivateRoute path="/feed" exact component={Feed} />
+				<PrivateRoute path="/" exact component={Feed} />
 				<PrivateRoute path="/create" exact component={Create} />
 				<PrivateRoute path="/discover" exact component={Discover} />
 				<PrivateRoute path="/activity" exact component={Activity} />
 				<PrivateRoute path="/profile" exact component={Profile} />
+				<PrivateRoute path="/search" exact component={Search} />
 			</Switch>
 		</Router>
 	);

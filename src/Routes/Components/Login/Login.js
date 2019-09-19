@@ -39,7 +39,7 @@ function Login(props) {
 			console.log(data);
 			localStorage.setItem('token', token);
 			localStorage.setItem('refreshToken', refreshToken);
-			return <Redirect to="/feed" />;
+			return <Redirect to="/" />;
 		} else {
 			errors.map(x => console.log('MSG >>>', x.message, 'PATH >>>', x.path));
 			return <div>ERROR</div>;

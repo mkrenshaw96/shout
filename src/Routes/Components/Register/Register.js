@@ -4,6 +4,7 @@ import { gql } from 'apollo-boost';
 import './Register.css';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { Redirect } from 'react-router-dom';
 
 function Register() {
 	const [name, setName] = useState('');
@@ -24,7 +25,15 @@ function Register() {
 		return <p>Loading...</p>;
 	}
 	if (error) return <p>Error :{error.message}</p>;
-	if (data) console.log(data);
+	if (data) {
+		const { ok, errors } = data.createUser;
+		if (ok) {
+			return <Redirect to="/login" />;
+		} else {
+			errors.map(x => console.log('MSG >>>', x.message, 'PATH >>>', x.path));
+			return <div>ERROR</div>;
+		}
+	}
 
 	return (
 		<div id="register-wrapper">
@@ -36,33 +45,42 @@ function Register() {
 				<TextField
 					type="text"
 					label="Full Name"
+					autoComplete="name"
 					margin="dense"
 					variant="outlined"
 					className="input-item"
+					required
 					onChange={e => setName(e.target.value)}
 				/>
 				<TextField
 					type="email"
+					name="email"
 					label="Email"
+					autoComplete="email"
 					margin="dense"
 					variant="outlined"
 					className="input-item"
+					required
 					onChange={e => setEmail(e.target.value)}
 				/>
 				<TextField
 					type="username"
 					label="Username"
+					autoComplete="username"
 					margin="dense"
 					variant="outlined"
 					className="input-item"
+					required
 					onChange={e => setUsername(e.target.value)}
 				/>
 				<TextField
 					type="password"
 					label="Password"
+					autoComplete="password"
 					margin="dense"
 					variant="outlined"
 					className="input-item"
+					required
 					onChange={e => setPassword(e.target.value)}
 				/>
 				<br />

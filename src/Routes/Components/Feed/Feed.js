@@ -1,94 +1,91 @@
 import React from 'react';
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import Placeholder from '../Profile/Assets/placeholder.jpeg';
+import Dots from './Assets/dots.svg';
 import './Feed.css';
-import Pen from './Asset/pen.svg';
-import PP from './Asset/profilepic.jpeg';
-import Dots from './Asset/dots.svg';
-import Location from './Asset/location.svg';
-import Like from './Asset/heart.svg';
-import Comment from './Asset/comment.svg';
-import Share from './Asset/share.svg';
-import Star from './Asset/star.svg';
-import Forest from './Asset/forest.jpeg';
 
-function Feed(props) {
-	return (
-		<div id="feed-wrapper">
-			<Title />
-			{[1, 2, 3, 4, 5].map(x => (
-				<SinglePost key={x} />
-			))}
-		</div>
-	);
+function Home() {
+	const feedQuery = gql`
+		query {
+			getMyFeed {
+				ok
+				post {
+					text
+					createdAt
+					user {
+						id
+						username
+						profilePicUrl
+					}
+				}
+			}
+		}
+	`;
+
+	const { data, loading, error } = useQuery(feedQuery);
+	if (loading) return <LinearProgress color="secondary" />;
+	if (error) return <LinearProgress />;
+	if (data) console.log(data);
+
+	return data.getMyFeed.ok
+		? data.getMyFeed.post.map((post, key) => {
+				return <Wrapper post={post} key={key} />;
+		  })
+		: null;
 }
 
-function Title() {
+function Wrapper(props) {
 	return (
-		<div id="feed-heading">
-			<div id="feed-title">Feed</div>
-			<img src={Pen} alt="Create" id="feed-create-btn" />
-		</div>
-	);
-}
-
-function SinglePost(props) {
-	return (
-		<div className="post-wrapper">
-			<Header />
-			<Content />
-			<Media />
-			<Interactions />
+		<div className="feed-wrapper">
+			<Header postData={props.post} />
+			<Content postData={props.post} />
+			<Interactions postData={props.post} />
+			<hr style={{ width: '85%' }} />
 		</div>
 	);
 }
 
 function Header(props) {
+	console.log(props.postData.user.username);
 	return (
-		<div className="post-header">
-			<div className="post-user-data">
-				<img src={PP} alt="profile" className="post-user-img" />
-				<div className="post-user-info">
-					<div className="post-user-name">Anothony Cortez</div>
-					<div className="post-place-time-data">
-						<div className="post-time">30 min ago</div>
-						<img src={Location} alt="location" className="post-location-img" />
-						<div className="post-location">London, United Kingdom</div>
-					</div>
-				</div>
+		<div className="feed-header">
+			<img src={Placeholder} alt="" className="feed-header-profile-picture" />
+			<div className="feed-header-info">
+				<div className="feed-header-username">{props.postData.user.username}</div>
+				<div className="feed-header-location">Indianapolis, IN</div>
 			</div>
-			<img src={Dots} alt="options" className="post-options" />
+			<div className="feed-header-time">2 mins ago</div>
 		</div>
 	);
 }
 
 function Content(props) {
 	return (
-		<div className="post-cont">
-			<div>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam nesciunt velit qui dolorem quae
-				quibusdam eum, aliquid reprehenderit deserunt animi culpa accusantium illum voluptates veniam. Saepe,
-				consectetur. Similique, quibusdam possimus.
-			</div>
+		<div className="feed-content">
+			{/* <img src={Placeholder} alt="pic" className="feed-img" /> */}
+			<div className="feed-text">{props.postData.text}</div>
 		</div>
 	);
-}
-
-function Media(props) {
-	return <img src={Forest} alt="media" className="post-media" />;
 }
 
 function Interactions(props) {
 	return (
-		<div className="post-interactions">
-			<div className="interactions-left-links">
-				<img src={Like} alt="like" className="interactions-icon-btn iib-space" />
-				<div className="interactions-num iib-space">968</div>
-				<img src={Comment} alt="comment" className="interactions-icon-btn iib-space" />
-				<div className="interactions-num iib-space">24</div>
-				<img src={Share} alt="share" className="interactions-icon-btn iib-space" />
+		<div className="feed-interactions">
+			<div className="feed-interactions-data">
+				<div className="feed-interactions-boxes">
+					<div className="feed-interactions-like-btn"></div>
+					<div className="feed-interactions-like-count">45</div>
+				</div>
+				<div className="feed-interactions-boxes">
+					<div className="feed-interactions-comment-btn"></div>
+					<div className="feed-interactions-comment-count">6</div>
+				</div>
 			</div>
-			<img src={Star} alt="favorite" className="interactions-icon-btn" />
+			<img src={Dots} alt="options" className="feed-interactions-options" />
 		</div>
 	);
 }
 
-export default Feed;
+export default Home;

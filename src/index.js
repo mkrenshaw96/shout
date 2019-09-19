@@ -41,7 +41,6 @@ const afterwareLink = new ApolloLink((operation, forward) => {
 				localStorage.setItem('refreshToken', refreshToken);
 			}
 		}
-
 		return response;
 	});
 });

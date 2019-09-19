@@ -11,13 +11,17 @@ function Nav(props) {
 
 	return (
 		<div id="nav">
-			<div className={active === '/feed' ? 'nav-text-active' : 'nav-text'} onClick={e => goTo('/feed')}>
+			<div className={active === '/' ? 'nav-text-active' : 'nav-text'} onClick={e => goTo('/')}>
 				feed
-				<div className={active === '/feed' ? 'indicator-active' : 'indicator'}></div>
+				<div className={active === '/' ? 'indicator-active' : 'indicator'}></div>
 			</div>
 			<div className={active === '/discover' ? 'nav-text-active' : 'nav-text'} onClick={e => goTo('/discover')}>
-				discover
+				explore
 				<div className={active === '/discover' ? 'indicator-active' : 'indicator'}></div>
+			</div>
+			<div className={active === '/create' ? 'nav-text-active' : 'nav-text'} onClick={e => goTo('/create')}>
+				create
+				<div className={active === '/create' ? 'indicator-active' : 'indicator'}></div>
 			</div>
 			<div className={active === '/activity' ? 'nav-text-active' : 'nav-text'} onClick={e => goTo('/activity')}>
 				activity
